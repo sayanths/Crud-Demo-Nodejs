@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const http = require("http");
 const mongoose = require("mongoose");
 const cors = require('cors');
-
+const employeeRoutes = require('./routes/employeeRoutes');
 const app = express();
 dotenv.config();
 
@@ -21,7 +21,7 @@ app.use(cors());
 connectDb();
 
 
-
+app.use('/api', employeeRoutes);
 
 const port = process.env.PORT || 5000;
 
