@@ -50,7 +50,10 @@ exports.getEmployeeById = async (req, res) => {
       return sendResponse(res, 404, 'Employee not found');
     }
 
-    sendResponse(res, 200, 'Employee fetched successfully', employee);
+   res.status(200).json({
+      status: 200,
+      data: employees,
+    });
   } catch (error) {
     sendResponse(res, 500, 'Error fetching employee', error.message);
   }
@@ -69,7 +72,7 @@ exports.updateEmployee = async (req, res) => {
       return sendResponse(res, 404, 'Employee not found');
     }
 
-    sendResponse(res, 200, 'Employee updated successfully', updatedEmployee);
+    sendResponse(res, 200, 'Employee updated successfully');
   } catch (error) {
     sendResponse(res, 500, 'Error updating employee', error.message);
   }
