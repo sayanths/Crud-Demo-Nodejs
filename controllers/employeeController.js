@@ -3,7 +3,6 @@
 const Employee = require('../models/employee');
 
 // Helper function to send responses
-// Helper function to send responses
 const sendResponse = (res, status, message) => {
   return res.status(status).json({ status, message });
 };
@@ -32,7 +31,11 @@ exports.createEmployee = async (req, res) => {
 exports.getEmployees = async (req, res) => {
   try {
     const employees = await Employee.find();
-    sendResponse(res, 200, 'Employees fetched successfully', employees);
+    res.status(200).json({
+      status: 200,
+      message: 'Employees fetched successfully',
+      data: employees,
+    });
   } catch (error) {
     sendResponse(res, 500, 'Error fetching employees', error.message);
   }
