@@ -3,9 +3,11 @@
 const Employee = require('../models/employee');
 
 // Helper function to send responses
-const sendResponse = (res, status, message, data = null) => {
-  return res.status(status).json({ message, data });
+// Helper function to send responses
+const sendResponse = (res, status, message) => {
+  return res.status(status).json({ status, message });
 };
+
 
 // Create a new employee
 exports.createEmployee = async (req, res) => {
@@ -20,7 +22,7 @@ exports.createEmployee = async (req, res) => {
     const newEmployee = new Employee({ name, phoneNumber, gender, maritalStatus, job, age });
     const savedEmployee = await newEmployee.save();
 
-    sendResponse(res, 201, 'Employee created successfully', savedEmployee);
+    sendResponse(res, 201, 'Employee created successfully');
   } catch (error) {
     sendResponse(res, 500, 'Error creating employee', error.message);
   }
